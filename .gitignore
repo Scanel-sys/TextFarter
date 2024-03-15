@@ -1,0 +1,7 @@
+/build
+/dependencies
+/app
+/libmy
+/loader
+
+.DS_Store
