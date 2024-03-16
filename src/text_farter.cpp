@@ -1,3 +1,5 @@
+#include "text_farter.hpp"
+
 
 
 #ifdef BUILD_DYNAMIC //При динамической сборке необходимо указании флага gcc «–D BUILD_DYNAMIC»
