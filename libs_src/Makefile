@@ -1,22 +1,26 @@
 COMPILER = gcc
+ZLIB_NAME = zlib-1.3.1
+FREETYPE_NAME = freetype-2.13.2
+LPNG_NAME = lpng1643
+
 
 all : clean static shared
 
 static:
-	cd zlib-1.3.1 && \
+	cd $(ZLIB_NAME) && \
 	./configure --prefix=../../dependencies/ --static
-	make -C zlib-1.3.1 static
+	make -C $(ZLIB_NAME) static
 	
 shared:
-	cd zlib-1.3.1 && \
+	cd $(ZLIB_NAME) && \
 	./configure --prefix=../../dependencies/ --shared
-	make -C zlib-1.3.1 shared
-	make -C zlib-1.3.1 install
+	make -C $(ZLIB_NAME) shared
+	make -C $(ZLIB_NAME) install
 
 clean:
-	make -C zlib-1.3.1 clean
-	make -C freetype-2.13.2 clean
-	make -C lpng1643 clean
+	make -C $(ZLIB_NAME) clean
+	make -C $(FREETYPE_NAME) clean
+	make -C $(LPNG_NAME) clean
 	cd ../dependencies && rm -rf include \
 					   && rm -rf lib \
 					   && rm -rf share
