@@ -1,0 +1,5 @@
+Build requirements:
+- libtool
+- make 3.8 <=
+- automake
+- m4
