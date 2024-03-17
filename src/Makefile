@@ -1,5 +1,5 @@
 SOURCES = main.cpp text_farter.cpp
-COMPILER = g++
+COMPILER = gcc
 TARGET = TextFarter
 
 static:
