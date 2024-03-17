@@ -2041,11 +2041,11 @@
 
 2022-12-20  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
-	[psaux] Delay the upem validity assertion.
-	
-	Fixes #1194.
-	
-	* src/psaux/psft.c (cf2_getUnitsPerEm): Remove the upem assert.
+	[psaux] Delay the upem validity assertion.
+	
+	Fixes #1194.
+	
+	* src/psaux/psft.c (cf2_getUnitsPerEm): Remove the upem assert.
 	(cf2_checkTransform): Assert the upem validity after checking the scale.
 
 2022-12-14  David Vanderson  <david.vanderson@gmail.com>
@@ -2422,10 +2422,10 @@
 
 2022-10-03  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
-	* src/cache/ftccmap.c (FTC_CMapCache_Lookup): Avoid `FT_Set_Charmap`.
-	
-	Set charmap aggressively without all validations of `FT_Set_Charmap`
-	because we take it from the available array and only temporarily.
+	* src/cache/ftccmap.c (FTC_CMapCache_Lookup): Avoid `FT_Set_Charmap`.
+	
+	Set charmap aggressively without all validations of `FT_Set_Charmap`
+	because we take it from the available array and only temporarily.
 	Even CMap Format 14 will gracefully return 0.
 
 2022-10-03  Alexei Podtelezhnikov  <apodtele@gmail.com>
@@ -2509,13 +2509,13 @@
 
 2022-09-22  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
-	[base] Discard and recreate bitmaps for copying and converting.
-	
-	Reusing target bitmaps for copying and converting is permitted.  It is,
-	however, pointless to preserve their content before overwriting.  Free-
-	malloc might be faster than realloc.
-	
-	* src/base/ftbitmap.c (FT_Bitmap_Copy, FT_Bitmap_Convert): Free
+	[base] Discard and recreate bitmaps for copying and converting.
+	
+	Reusing target bitmaps for copying and converting is permitted.  It is,
+	however, pointless to preserve their content before overwriting.  Free-
+	malloc might be faster than realloc.
+	
+	* src/base/ftbitmap.c (FT_Bitmap_Copy, FT_Bitmap_Convert): Free
 	an old buffer and create a new one.
 
 2022-09-16  Dominik Röttsches  <drott@chromium.org>
@@ -3112,8 +3112,8 @@
 
 2022-06-16  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
-	[truetype/GX] Clean up advance adjustment (Brrr).
-	
+	[truetype/GX] Clean up advance adjustment (Brrr).
+	
 	* src/truetype/ttgload.c (load_truetype_glyph): Remove remaining code.
 
 2022-06-16  Ben Wagner  <bungeman@chromium.org>
@@ -3846,22 +3846,22 @@
 
 2022-02-09  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
-	[pshinter] Clear reused mask.
-	
-	In PS hinter, memory allocations persist until the module is done.
-	Therefore, we have to clear reused masks.
-	
+	[pshinter] Clear reused mask.
+	
+	In PS hinter, memory allocations persist until the module is done.
+	Therefore, we have to clear reused masks.
+	
 	* src/pshinter/pshrec.c (ps_mask_table_alloc): Clear reused mask.
 
 2022-02-09  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
-	[pshinter] Use unsigned indices.
-	
-	This reduces casting and eliminates some checks.
-	
-	* src/pshinter/pshrec.c (ps_mask_test_bit, ps_mask_table_merge,
-	ps_dimension_add_t1stem, ps_hints_t1stem3): Updated.
-	(ps_dimension_add_counter): Updated, unnecessary checks removed.
+	[pshinter] Use unsigned indices.
+	
+	This reduces casting and eliminates some checks.
+	
+	* src/pshinter/pshrec.c (ps_mask_test_bit, ps_mask_table_merge,
+	ps_dimension_add_t1stem, ps_hints_t1stem3): Updated.
+	(ps_dimension_add_counter): Updated, unnecessary checks removed.
 
 2022-02-08  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
@@ -3878,12 +3878,12 @@
 
 2022-02-08  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
-	[pshinter] Revise the hint table handling.
-	
-	* src/pshinter/pshrec.c (ps_hint_table_ensure): Remove redundant size
-	check; avoid array zeroing because it is fully initialized when used.
-	(ps_hint_table_alloc): Fix off-by-one comparison and remove another
-	zeroing of the array elements.
+	[pshinter] Revise the hint table handling.
+	
+	* src/pshinter/pshrec.c (ps_hint_table_ensure): Remove redundant size
+	check; avoid array zeroing because it is fully initialized when used.
+	(ps_hint_table_alloc): Fix off-by-one comparison and remove another
+	zeroing of the array elements.
 
 2022-02-06  Werner Lemberg  <wl@gnu.org>
 
@@ -3933,10 +3933,10 @@
 
 2022-01-31  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
-	[cache] Partially revert 9870b6c07e2c.
-	
-	Fix crashes reported by Werner.
-	
+	[cache] Partially revert 9870b6c07e2c.
+	
+	Fix crashes reported by Werner.
+	
 	* src/cache/ftcmru.c (FTC_MruList_New): Use `FT_ALLOC` again.
 
 2022-01-31  Werner Lemberg  <wl@gnu.org>
@@ -4251,9 +4251,9 @@
 
 2022-01-20  Alexei Podtelezhnikov  <apodtele@gmail.com>
 
-	[pshinter] Avoid unnecessary zeroing.
-	
-	* src/pshinter/pshalgo.c (psh_hint_table_init,psh_glyph_init,
+	[pshinter] Avoid unnecessary zeroing.
+	
+	* src/pshinter/pshalgo.c (psh_hint_table_init,psh_glyph_init,
 	psh_glyph_interpolate_normal_points): Use FT_QNEW_ARRAY.
 
 2022-01-20  Alexei Podtelezhnikov  <apodtele@gmail.com>

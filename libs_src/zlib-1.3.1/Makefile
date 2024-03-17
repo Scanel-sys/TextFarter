@@ -23,13 +23,13 @@ CFLAGS=-O3 -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN
 SFLAGS=-O3 -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN
 LDFLAGS=
 TEST_LIBS=-L. libz.a
-LDSHARED=gcc
+LDSHARED=gcc -shared -Wl,-soname,libz.so.1,--version-script,zlib.map
 CPP=
 
 STATICLIB=libz.a
-SHAREDLIB=
-SHAREDLIBV=
-SHAREDLIBM=
+SHAREDLIB=libz.so
+SHAREDLIBV=libz.so.1.3.1
+SHAREDLIBM=libz.so.1
 LIBS=$(STATICLIB) $(SHAREDLIBV)
 
 AR=ar
@@ -41,7 +41,7 @@ TAR=tar
 SHELL=/bin/sh
 EXE=
 
-prefix =/usr/local
+prefix =../../dependencies/
 exec_prefix =${prefix}
 libdir =${exec_prefix}/lib
 sharedlibdir =${libdir}
@@ -69,7 +69,7 @@ OBJS = $(OBJC) $(OBJA)
 
 PIC_OBJS = $(PIC_OBJC) $(PIC_OBJA)
 
-all: static all64
+all: static shared all64
 
 static: example$(EXE) minigzip$(EXE)
 
@@ -79,7 +79,7 @@ all64: example64$(EXE) minigzip64$(EXE)
 
 check: test
 
-test: all teststatic test64
+test: all teststatic testshared test64
 
 teststatic: static
 	@TMPST=tmpst_$$; \
