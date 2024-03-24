@@ -1,25 +1,52 @@
-COMPILER = gcc
-ZLIB_NAME = zlib-1.3.1
-FREETYPE_NAME = freetype-2.13.2
-LPNG_NAME = libpng-1.6.43
+CC = gcc
+
+TARGET_STATIC = app_static
+TARGET_DYNAMIC = app_dynamic
+
+BUILDDIR = build
 
 
-all : clean static shared
+build_dir:
+	mkdir -pv $(BUILDDIR)
 
-static:
-	cd $(ZLIB_NAME) && \
-	./configure --prefix=../../dependencies/ --static
-	make -C $(ZLIB_NAME) static
-	make -C $(ZLIB_NAME) install
+cp_builds:
+	cp -r zlib/myBuild/* $(BUILDDIR)
+	cp -r freetype/myBuild/* $(BUILDDIR)
+	cp -r libpng/myBuild/* $(BUILDDIR)
+
+
+all : clean static dynamic
+
+static : build_dir zlib_static freetype_static libpng_static cp_builds
+
+shared : build_dir zlib_shared freetype_shared libpng_shared cp_builds
+
+
+freetype_static :
+	$(MAKE) -C freetype static
+	# cp freetype/objs/.libs/libfreetype.a build/libfreetype.a
 	
-shared:
-	cd $(ZLIB_NAME) && \
-	./configure --prefix=../../dependencies/ --shared
-	make -C $(ZLIB_NAME) shared
-	make -C $(ZLIB_NAME) install
+libpng_static :
+	$(MAKE) -C libpng static
+	# cp libpng/.libs/libpng16.a build/libpng16.a
 
-clean:
-	make -C $(ZLIB_NAME) clean
-	cd ../dependencies && rm -rf include \
-					   && rm -rf lib \
-					   && rm -rf share
+freetype_shared :
+	$(MAKE) -C freetype shared
+	# cp freetype/objs/.libs/libfreetype.so build/libfreetype.so
+
+libpng_shared :
+	$(MAKE) -C libpng shared
+	# cp libpng/.libs/libpng16.so build/libpng16.so
+
+zlib_static :
+	$(MAKE) -C zlib static
+
+zlib_shared :
+	$(MAKE) -C zlib shared
+
+
+clean :
+	$(MAKE) -C zlib clean
+	$(MAKE) -C freetype clean 
+	$(MAKE) -C libpng clean
+	rm -r $(BUILDDIR)
