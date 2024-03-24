@@ -7,27 +7,28 @@ OBJECTS = $(SOURCES:.c=.o)
 
 CFLAGS = -fno-stack-protector -fno-exceptions -pie -fPIE -c -O2 -fPIC
 
-STATICLIB = libzip.a
-DYNAMICLIB = libzip.so
-
 BUILDDIR = myBuild
 
+STATICLIB = $(BUILDDIR)/libzip.a
+DYNAMICLIB = $(BUILDDIR)/libzip.so
+
+
 build_dir:
-	mkdir -pv $(BUILDDIR)
+	mkdir -pv $(BUILDDIR)/obj
 
 static: build_dir $(SOURCES) $(STATICLIB)
 
 $(STATICLIB): $(OBJECTS)
-	ar cr $@ $(BUILDDIR)/*.o
+	ar cr $@ $(BUILDDIR)/obj/*.o
 
 shared: build_dir $(SOURCES) $(DYNAMICLIB)
 
 $(DYNAMICLIB): $(OBJECTS)
-	$(CC) -shared $(BUILDDIR)/*.o -o $@
+	$(CC) -shared $(BUILDDIR)/obj/*.o -o $@
 
 %.o : %.c
 	$(CC) $(CFLAGS) -DPIC $< -o $@
-	mv -f $@ $(BUILDDIR)
+	mv -f $@ $(BUILDDIR)/obj/
 
 clean:
 	rm -rf $(BUILDDIR)
