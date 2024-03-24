@@ -24,22 +24,18 @@ shared : build_dir zlib_shared freetype_shared libpng_shared cp_builds
 
 freetype_static :
 	$(MAKE) -C freetype static
-	# cp freetype/objs/.libs/libfreetype.a build/libfreetype.a
 	
 libpng_static :
 	$(MAKE) -C libpng static
-	# cp libpng/.libs/libpng16.a build/libpng16.a
-
-freetype_shared :
-	$(MAKE) -C freetype shared
-	# cp freetype/objs/.libs/libfreetype.so build/libfreetype.so
-
-libpng_shared :
-	$(MAKE) -C libpng shared
-	# cp libpng/.libs/libpng16.so build/libpng16.so
 
 zlib_static :
 	$(MAKE) -C zlib static
+
+freetype_shared :
+	$(MAKE) -C freetype shared
+
+libpng_shared :
+	$(MAKE) -C libpng shared
 
 zlib_shared :
 	$(MAKE) -C zlib shared
