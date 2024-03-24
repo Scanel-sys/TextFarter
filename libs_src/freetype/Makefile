@@ -14,27 +14,28 @@ CFLAGS = -fno-stack-protector -fno-exceptions -pie -fPIE -c -O2 -fPIC \
 
 INCLUDE = -I./include/freetype/config -I./builds/unix -I./include -I./src -I../zlib
 
-STATICLIB = libfreetype.a
-DYNAMICLIB = libfreetype.so
-
 BUILDDIR = myBuild
 
+STATICLIB = $(BUILDDIR)/libfreetype.a
+DYNAMICLIB = $(BUILDDIR)/libfreetype.so
+
+
 build_dir:
-	mkdir -pv $(BUILDDIR) 
+	mkdir -pv $(BUILDDIR)/obj 
 
 static: build_dir $(SOURCES) $(STATICLIB)
 
 $(STATICLIB): $(OBJECTS)
-	ar cr $@ $(BUILDDIR)/*.o
+	ar cr $@ $(BUILDDIR)/obj/*.o
 
 shared: build_dir $(SOURCES) $(DYNAMICLIB)
 
 $(DYNAMICLIB): $(OBJECTS)
-	$(CC) -shared $(BUILDDIR)/*.o -o $@
+	$(CC) -shared $(BUILDDIR)/obj/*.o -o $@
 
 %.o : %.c
 	$(CC) $(INCLUDE) $(CFLAGS) $< -o $@ -DPIC
-	mv -f $@ $(BUILDDIR)
+	mv -f $@ $(BUILDDIR)/obj
 
 clean:
 	rm -rf $(BUILDDIR)
