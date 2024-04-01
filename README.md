@@ -1,3 +1,6 @@
+# Суть программы
+Генерация картинки с переданным текстом
+
 # Описание программы
 
     1. Программа компилируется с помощью gcc и системы makefile в nix;
@@ -17,6 +20,8 @@
 # Example
 Из сгенерированной директории build/bin:
 ```bash
+./programm {"path/to/ttf" "text" "generated/picture/path"}
+
 user$: ./TextFarter-static ../res/lobster.ttf "test_output_static" ../static.png
 
 user$: ./TextFarter-shared ../res/lobster.ttf "test_output_shared" ../shared.png
