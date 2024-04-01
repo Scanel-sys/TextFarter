@@ -1,7 +1,7 @@
 CC = gcc
 LIBS = -lfreetype -lpng -lzip -lm
 DEPS_DIR=../build/deps
-LIBS_DIR=../libs_srcblob.bin
+LIBS_DIR=../libs_src
 CFLAGS = -I$(LIBS_DIR)/zlib/ -I$(LIBS_DIR)/libpng/ -I$(LIBS_DIR)/freetype/include/ -I$(LIBS_DIR)/freetype/include/freetype
 LDFLAGS = -L$(DEPS_DIR)/static/
 CFLAGS_BLOB = -fno-stack-protector -nostdlib -pie -fPIE -lm -fPIC -shared -e main -D BUILD_BLOB
