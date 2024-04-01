@@ -40,4 +40,4 @@ cp_libconf:
 
 clean:
 	rm -rf $(BUILDDIR)
-	rm pnglibconf.h
+	rm -f pnglibconf.h

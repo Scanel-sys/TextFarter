@@ -15,7 +15,7 @@ cp_builds:
 	cp -r libpng/myBuild/* $(BUILDDIR)
 
 
-all : clean static dynamic
+all : clean static shared
 
 static : build_dir zlib_static freetype_static libpng_static cp_builds
 
@@ -45,4 +45,4 @@ clean :
 	$(MAKE) -C zlib clean
 	$(MAKE) -C freetype clean 
 	$(MAKE) -C libpng clean
-	rm -r $(BUILDDIR)
+	rm -rf $(BUILDDIR)
