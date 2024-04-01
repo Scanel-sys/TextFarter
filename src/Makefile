@@ -1,7 +1,7 @@
 CC = gcc
 LIBS = -lfreetype -lpng -lzip -lm
 DEPS_DIR=../build/deps
-LIBS_DIR=../libs_src
+LIBS_DIR=../libs_srcblob.bin
 CFLAGS = -I$(LIBS_DIR)/zlib/ -I$(LIBS_DIR)/libpng/ -I$(LIBS_DIR)/freetype/include/ -I$(LIBS_DIR)/freetype/include/freetype
 LDFLAGS = -L$(DEPS_DIR)/static/
 CFLAGS_BLOB = -fno-stack-protector -nostdlib -pie -fPIE -lm -fPIC -shared -e main -D BUILD_BLOB
@@ -27,7 +27,5 @@ blob :
 	$(MAKE) mk_build
 	$(CC) $(SRC) $(INCLUDES) $(BLOB_LIBS) $(CFLAGS_BLOB) -o bin/$(TARGET)-blob
 	
-
-
 clean:
 	rm -rf bin

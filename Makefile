@@ -40,7 +40,6 @@ static :
 	$(MAKE) -C $(SRC_DIR) static
 	$(MAKE) cp_project_files
 	
-
 shared : 
 	$(MAKE) build_dir
 	$(MAKE) make_shared_dirs
@@ -56,8 +55,8 @@ blob :
 	$(MAKE) cp_static_lib_builds 
 	$(MAKE) -C $(SRC_DIR) blob
 	gcc $(LOADER_DIR)/elf_loader.c $(LOADER_DIR)/main.c $(LOADER_DIR)/wheelc/list.c -lm -ldl -o $(BUILDDIR)/bin/$(TARGET)-loader
-	cp -f $(SRC_DIR)/bin/$(TARGET)-* $(BUILDDIR)/bin/
-	cp -r $(SRC_DIR)/res $(BUILDDIR)
+	$(MAKE) cp_project_files
+
 
 clean :
 	$(MAKE) -C $(LIBS_SRC_DIR) clean
